@@ -23,16 +23,15 @@ void Stop();
 void setup()
 {
   Serial.begin(9600); // Allow Serial communication via USB cable to computer (if required)
-  pinMode(RxD, INPUT); // Set pin to receive INPUT from bluetooth shield on Digital Pin 6
-  pinMode(TxD, OUTPUT); // Set pin to send data (OUTPUT) to bluetooth shield on Digital Pin 7
+  pinMode(RxD, INPUT); // Set pin to receive INPUT from bluetooth shield on Digital Pin 3
+  pinMode(TxD, OUTPUT); // Set pin to send data (OUTPUT) to bluetooth shield on Digital Pin 2
   pinMode(lM1, OUTPUT);
   pinMode(lM2, OUTPUT);
   pinMode(rM1, OUTPUT);
   pinMode(rM2, OUTPUT);
   pinMode(rPWM, OUTPUT);
   pinMode(lPWM, OUTPUT);
-  // myservo.attach(4);
-  setupBlueToothConnection(); //Used to initialise the Bluetooth shield
+  //setupBlueToothConnection(); //Used to initialise the Bluetooth shield
   //  analogWrite(10, 100);
   //  analogWrite(11, 100);
   Stop();
@@ -102,19 +101,19 @@ void loop()
   }
 }
 
-void setupBlueToothConnection()
-{
-  blueToothSerial.begin(9600); //Set BluetoothBee BaudRate to default baud rate 38400
-  blueToothSerial.print("\r\n+STWMOD=0\r\n"); //set the bluetooth work in slave mode
-  blueToothSerial.print("\r\n+STNA=SeeedBTSlave\r\n"); //set bluetooth name as "SeeedBTSlave"
-  blueToothSerial.print("\r\n+STOAUT=1\r\n"); // Permit Paired device to connect me
-  blueToothSerial.print("\r\n+STAUTO=0\r\n"); // Auto-connection should be forbidden here
-  delay(2000); // This delay is required.
-  blueToothSerial.print("\r\n+INQ=1\r\n"); //make the slave bluetooth inquirable
-  Serial.println("The slave bluetooth is inquirable!");
-  delay(2000); // This delay is required.
-  blueToothSerial.flush();
-}
+// void setupBlueToothConnection()
+// {
+//   blueToothSerial.begin(9600); //Set BluetoothBee BaudRate to default baud rate 38400
+//   blueToothSerial.print("\r\n+STWMOD=0\r\n"); //set the bluetooth work in slave mode
+//   blueToothSerial.print("\r\n+STNA=SeeedBTSlave\r\n"); //set bluetooth name as "SeeedBTSlave"
+//   blueToothSerial.print("\r\n+STOAUT=1\r\n"); // Permit Paired device to connect me
+//   blueToothSerial.print("\r\n+STAUTO=0\r\n"); // Auto-connection should be forbidden here
+//   delay(2000); // This delay is required.
+//   blueToothSerial.print("\r\n+INQ=1\r\n"); //make the slave bluetooth inquirable
+//   Serial.println("The slave bluetooth is inquirable!");
+//   delay(2000); // This delay is required.
+//   blueToothSerial.flush();
+// }
 
 void moveForward()
 {
